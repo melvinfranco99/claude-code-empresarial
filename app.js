@@ -160,7 +160,16 @@
         a: 1, e: "Esc interrumpe a Claude; Esc Esc permite volver a un mensaje anterior (equivalente a /rewind)." },
       { q: "¿Para qué sirve el fichero .mcp.json en la raíz de un repositorio?",
         o: ["Para guardar la API key", "Para definir servidores MCP compartidos con el equipo (ámbito proyecto)", "Para listar comandos prohibidos", "Para la memoria de Claude"],
-        a: 1, e: "Define servidores MCP de ámbito proyecto que se versionan con el repo. Claude pide aprobación antes de usarlos; revisa siempre su origen." }
+        a: 1, e: "Define servidores MCP de ámbito proyecto que se versionan con el repo. Claude pide aprobación antes de usarlos; revisa siempre su origen." },
+      { q: "Tienes la regla deny Read(~/.aws/**). Claude ejecuta python -c \"open('/home/ana/.aws/credentials')\". ¿Qué capa lo frena?",
+        o: ["La regla deny (capa 2)", "El sandbox con ~/.aws en filesystem.denyRead (capa 3)", "CLAUDE.md (capa 1)", "Ninguna puede"],
+        a: 1, e: "Las reglas Read no cubren scripts que abren ficheros por su cuenta. El sandbox actúa a nivel de sistema operativo sobre cualquier proceso, pero solo si añades la ruta a denyRead: por defecto deja leer casi todo." },
+      { q: "Trabajas en Windows sin WSL. ¿Qué pasa con el sandbox?",
+        o: ["Funciona igual que en Linux", "Usa Windows Defender para aislar", "No existe: los comandos se ejecutan sin aislar; hay que usar WSL2", "Solo aísla la red"],
+        a: 2, e: "El sandbox usa Seatbelt en macOS y bubblewrap en Linux/WSL2. En Windows nativo no hay sandbox." },
+      { q: "Tu hook PreToolUse falla porque falta jq y termina con exit 1. ¿Qué ocurre con el comando?",
+        o: ["Se bloquea", "Se ejecuta: solo exit 2 bloquea", "Claude Code se cierra", "Se pregunta al usuario siempre"],
+        a: 1, e: "Exit 2 bloquea; cualquier otro código distinto de 0 es un error no bloqueante y la acción continúa. Prueba siempre tus hooks a mano." }
     ];
     let score = 0, answered = 0;
     const scoreEl = document.getElementById("quiz-score");
@@ -181,7 +190,7 @@
           answered++;
           box.classList.add("answered");
           scoreEl.textContent = "Puntuación: " + score + " / " + answered + (answered === QUESTIONS.length
-            ? (score >= 10 ? " — ¡Nivel experto! 🏆" : score >= 7 ? " — Buen nivel, repasa los fallos 👍" : " — Repasa los capítulos de seguridad 📚") : "");
+            ? (score >= QUESTIONS.length - 2 ? " — ¡Nivel experto! 🏆" : score >= QUESTIONS.length * 0.6 ? " — Buen nivel, repasa los fallos 👍" : " — Repasa los capítulos de seguridad 📚") : "");
         });
         box.appendChild(b);
         return b;

@@ -220,6 +220,50 @@ details { border: 1px solid var(--border); border-radius: 10px; background: var(
 details summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
 details[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
 
+
+/* ===== Explicado fácil ===== */
+.simple { border: 1px dashed var(--accent); background: var(--accent-soft); border-radius: 12px; padding: 12px 16px 10px; margin: 1.2rem 0; }
+.simple > .tag { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 2px; }
+.simple p { margin: .3rem 0 .5rem; }
+.simple ul { margin: .3rem 0 .5rem; padding-left: 1.2rem; }
+
+/* ===== Conceptos ===== */
+.concept { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin: 12px 0; }
+.concept h4 { margin: 0 0 .3rem; display: flex; gap: 8px; align-items: center; }
+.concept .def { font-weight: 600; margin: .2rem 0 .5rem; }
+.concept .rows { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 4px 12px; font-size: .95rem; }
+.concept .rows > b { color: var(--text-soft); font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
+@media (max-width: 600px) { .concept .rows { grid-template-columns: minmax(0,1fr); } .concept .rows > b { padding-top: 6px; } }
+
+/* ===== Capas ===== */
+.layer { border: 1px solid var(--border); border-left: 6px solid var(--lc, var(--accent)); border-radius: var(--radius); background: var(--surface); padding: 16px 18px 8px; margin: 18px 0; box-shadow: var(--shadow); }
+.layer .num { font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--lc, var(--accent)); text-transform: uppercase; letter-spacing: .06em; }
+.layer h3 { margin: .1rem 0 .5rem; }
+.layer .analogy { font-style: italic; color: var(--text-soft); }
+.layer .two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin: .6rem 0; }
+.layer .two > div { border-radius: 10px; padding: 10px 12px; font-size: .95rem; }
+.layer .two .yes { background: var(--green-soft); } .layer .two .no { background: var(--red-soft); }
+.layer .two ul { margin: .2rem 0; padding-left: 1.1rem; }
+@media (max-width: 600px) { .layer .two { grid-template-columns: minmax(0,1fr); } }
+.l1 { --lc: var(--red); } .l2 { --lc: var(--amber); } .l3 { --lc: var(--purple); } .l4 { --lc: var(--blue); } .l5 { --lc: var(--green); }
+.matrix td, .matrix th { text-align: center; } .matrix td:first-child, .matrix th:first-child { text-align: left; }
+
+/* ===== Paso a paso ===== */
+.phase { margin: 2.2rem 0 .6rem; padding: 10px 16px; border-radius: 10px; background: var(--bg-soft); border: 1px solid var(--border); }
+.phase h3 { margin: 0; }
+.phase p { margin: .2rem 0 0; color: var(--text-soft); font-size: .95rem; }
+.step { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); margin: 14px 0; overflow: hidden; }
+.step > header { display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.step > header .n { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; }
+.step > header h4 { margin: 0; font-size: 1.08rem; }
+.step > header .who { margin-left: auto; }
+.step > .body { padding: 4px 16px 10px; }
+.step .label-s { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-soft); margin: .9rem 0 .2rem; }
+.step .ok { background: var(--green-soft); border-radius: 10px; padding: 8px 12px; font-size: .95rem; }
+.step .ko { background: var(--amber-soft); border-radius: 10px; padding: 8px 12px; font-size: .95rem; }
+.cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; margin: .4rem .4rem 0 0; }
+.cta.ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
 /* ===== Footer ===== */
 footer { padding: 40px 0; color: var(--text-soft); font-size: 14px; }
 .to-top { position: fixed; right: 18px; bottom: 18px; z-index: 40; opacity: 0; pointer-events: none; transition: opacity .2s; }
